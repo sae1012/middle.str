@@ -47,19 +47,24 @@ bool itc_compare(string s1, string s2){
 }
 
 
-int itc_countWords(string str){
-     int count = 0;
-     bool inWord = false;
-     for(int i = 0; i < str.length(); i++){
-        if(isLetter(str[i])){
-            if(!inWord){
-            count++;
-            inWord = true;
-        }
-     }
-        else{
-            return 0;
+int itc_countWords(string str) {
+    int count = 0;
+    bool word = false;
+
+    for (int i = 0; i < str.length(); i++) {
+        if (str[i] != ' ') {
+            if (!isLetter(str[i]) && str[i] == '#') {
+                return 0;
+            }
+
+            if (!word) {
+                count++;
+                word = true;
+            }
+        } else {
+            word = false;
         }
     }
+
     return count;
 }
